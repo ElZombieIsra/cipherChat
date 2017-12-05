@@ -23,7 +23,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.set('view engine','pug');
-app.set('port', (process.env.port||5000));
+app.set('port', (process.env.PORT || 5000));
 io.on('connection',(socket)=>{
 	socket.emit('oldMsg',messages);
 	console.log(messages);
