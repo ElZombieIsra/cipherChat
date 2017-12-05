@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Chat cifrado GG
+  body
+    #msgs
+    form
+      p Escribe tu mensaje
+      input#msg(type='text', name='msg', placeholder='mensaje')
+      |  
+      input(type='submit', name='send')
+    script(src='/socket.io/socket.io.js')
+    script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
+    script(src='js/logic.js')

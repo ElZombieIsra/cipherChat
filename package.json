@@ -1,0 +1,32 @@
+{
+  "name": "cipherchat",
+  "version": "0.0.1",
+  "description": "ewe",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElZombieIsra/cipherChat.git"
+  },
+  "keywords": [
+    "chat",
+    "cifrado",
+    "end-to-end"
+  ],
+  "author": "Israel Ibarra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ElZombieIsra/cipherChat/issues"
+  },
+  "homepage": "https://github.com/ElZombieIsra/cipherChat#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "jwt-simple": "^0.5.1",
+    "mongodb": "^2.2.33",
+    "node-rsa": "^0.4.2",
+    "pug": "^2.0.0-rc.4",
+    "socket.io": "^2.0.4"
+  }
+}

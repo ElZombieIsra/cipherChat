@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inicia sesión</title>
+</head>
+<body>
+	<form>
+		<p>Inicia sesión para comenzar</p>
+		<input type="text" name="nombre" id="nombre"><br>
+		<input type="password" name="pass" id="pass"><br>
+		<input type="button" id="b" value="Enviar">
+	</form>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$(document).ready(()=>{
+			$('#b').click(()=>{
+				var formData={
+					'user': $('#nombre').val(),
+					'pass':$('#pass').val()
+				};
+				$.ajax({
+					url:'/iniciaSesion',
+					type:'POST',
+					cache:false,
+					data:formData,
+					success:(data)=>{
+						alert(data);
+						if (data!=='No existe') {
+							localStorage.setItem('token',data.token);
+							window.location.href='./chat.html?token='+localStorage.token;
+						}
+						
+					},
+					error:(jqXHR,textStatus,err)=>{
+						alert('Error');
+					}
+				});
+			});
+		});
+	</script>
+</body>
+</html>
