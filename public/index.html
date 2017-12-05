@@ -10,6 +10,10 @@
 		<input type="password" name="pass" id="pass"><br>
 		<input type="button" id="b" value="Enviar">
 	</form>
+	<p id="serverMsg"></p>
+	<form action="/chat" method="POST" id="tForm">
+		<input type="hidden" name="token" id="token" value="">
+	</form>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		$(document).ready(()=>{
@@ -24,10 +28,12 @@
 					cache:false,
 					data:formData,
 					success:(data)=>{
-						alert(data);
 						if (data!=='No existe') {
 							localStorage.setItem('token',data.token);
-							window.location.href='./chat.html?token='+localStorage.token;
+							$('#token').val(localStorage.token);
+							$('#tForm').submit();
+						}else{
+							$('#serverMsg').text('El usuario y contraseña no coinciden');
 						}
 						
 					},
