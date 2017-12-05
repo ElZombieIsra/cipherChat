@@ -4,7 +4,7 @@
   "description": "ewe",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,9 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ElZombieIsra/cipherChat/issues"
+  },
+  "engines": {
+    "node": "8.9.1"
   },
   "homepage": "https://github.com/ElZombieIsra/cipherChat#readme",
   "dependencies": {
