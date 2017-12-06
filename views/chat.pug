@@ -6,20 +6,25 @@ html
     link(rel='stylesheet', href='css/style.css')
   body
     button#exit.btn Cerrar sesión
-    .container-fluid
-      p.h2= 'Usuario: '+user
-      #msgs.container
-      .footer
+    .panel.panel-primary(style="border:0px")
+    .panel-heading.top-bar
+        .col-md-8.col-xs-8
+        h3.panel-title
+            span.glyphicon.glyphicon-comment(style="margin-right:6px;")='Usuario: '+user
+    #msgs.panel-body.msg_container_base
+        chat_log
+    .panel-footer
         form
-          .row
-            .col-2
-              label.h5(for='msg') Escribe tu mensaje:
-            .col
-              input.form-control#msg(type='text', name='msg', placeholder='Mensaje')
-              |
-              input#user(type='hidden', name='user', value=''+user)
-            .col-2
-              input.btn(type='submit', name='send', value="Enviar mensaje")
+            .row
+              .col-2
+                label.h5(for='msg',autocomplete='off') Escribe tu mensaje:
+              .col
+                input.form-control#msg(type='text', name='msg', placeholder='Mensaje')
+                |
+                input#user(type='hidden', name='user', value=''+user)
+              .col-2
+                input.btn(type='submit', name='send', value="Enviar mensaje")
+
     script(src='/socket.io/socket.io.js')
     script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
     script(src='js/logic.js')
