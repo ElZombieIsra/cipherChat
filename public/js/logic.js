@@ -33,4 +33,8 @@ $(document).ready(()=>{
 			$('#msgs').html(htm);
 		}
 	});
+	$('#exit').click(()=>{
+		localStorage.removeItem('token');
+		window.location.href='/';
+	});
 });

@@ -3,8 +3,9 @@ html
   head
     title Chat cifrado GG
     link(rel='stylesheet',href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css')
-    link(rel='stylesheet', href='../css/style.css')
+    link(rel='stylesheet', href='css/style.css')
   body
+    button#exit.btn Cerrar sesión
     .container-fluid
       p.h2= 'Usuario: '+user
       #msgs.container
@@ -18,7 +19,7 @@ html
               |
               input#user(type='hidden', name='user', value=''+user)
             .col-2
-              input.btn(type='submit', name='send')
+              input.btn(type='submit', name='send', value="Enviar mensaje")
     script(src='/socket.io/socket.io.js')
     script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
     script(src='js/logic.js')
