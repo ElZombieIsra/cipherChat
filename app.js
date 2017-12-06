@@ -6,6 +6,7 @@ var express = require('express'),
 	io = require('socket.io')(http),
 	mongo = require('mongodb'),
 	jwt = require('jwt-simple'),
+	NodeRSA = require('node-rsa'),
 	key = new NodeRSA({b:128});
 var users = [],messages=[];
 var mongoURL = "mongodb://ElZombieIsra:awadeewe@awadeewe-shard-00-00-xdx9j.mongodb.net:27017,awadeewe-shard-00-01-xdx9j.mongodb.net:27017,awadeewe-shard-00-02-xdx9j.mongodb.net:27017/test?ssl=true&replicaSet=awadeewe-shard-0&authSource=admin";
