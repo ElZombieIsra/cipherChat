@@ -5,12 +5,14 @@ html
     link(rel='stylesheet',href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css')
     link(rel='stylesheet', href='css/style.css')
   body
-    button#exit.btn Cerrar sesión
     .panel.panel-primary(style="border:0px")
-    .panel-heading.top-bar
+    .panel-heading.top-bar.row
         .col-md-8.col-xs-8
-        h3.panel-title
-            span.glyphicon.glyphicon-comment(style="margin-right:6px;")='Usuario: '+user
+          h3.panel-title
+              span.glyphicon.glyphicon-comment(style="margin-right:6px;")='Usuario: '+user
+        .col
+        .col-2
+          button#exit.btn Cerrar sesión
     #msgs.panel-body.msg_container_base
         chat_log
     .panel-footer
