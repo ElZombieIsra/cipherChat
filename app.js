@@ -30,11 +30,10 @@ io.on('connection',(socket)=>{
 		console.log('Conexión exitosa, leer Mensajes');
 		db.collection('msg').find({},{_id:false}).toArray((err,result)=>{
 			if (err) throw err;
-			console.log(result);
+			socket.emit('oldMsg',result);
 			db.close();
 		});
 	});
-	socket.emit('oldMsg',messages);
 	console.log(messages);
 	users.push(socket.id);
 	console.log('An user is online');
