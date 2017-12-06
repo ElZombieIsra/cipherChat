@@ -25,6 +25,15 @@ app.use(bodyParser.json());
 app.set('view engine','pug');
 app.set('port', (process.env.PORT || 5000));
 io.on('connection',(socket)=>{
+	mongo.connect(mongoURL,(err,db)=>{
+		if (err) throw err;
+		console.log('Conexión exitosa, leer Mensajes');
+		db.collection('msg').find({},{_id:false}).toArray((err,result)=>{
+			if (err) throw err;
+			console.log(result);
+			db.close();
+		});
+	});
 	socket.emit('oldMsg',messages);
 	console.log(messages);
 	users.push(socket.id);
@@ -44,6 +53,15 @@ io.on('connection',(socket)=>{
 		let str = String(msg).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 		msgJson.user = user;
 		msgJson.msg=str;
+		mongo.connect(mongoURL,(err,db)=>{
+			if (err) throw err;
+			console.log('DB conectada crear msg');
+			db.collection('msg').insertOne(msgJson,(err,result)=>{
+				if (err) throw err;
+				console.log('Mensaje añadido con éxito');
+				db.close();
+			});
+		});
 		messages.push(msgJson);
 		io.sockets.emit('Msg',msgJson);
 	});
@@ -53,7 +71,6 @@ io.on('connection',(socket)=>{
 });
 
 app.post('/iniciaSesion',(req,res)=>{
-	console.log(req.data);
 	let fUser = req.body.user;
 	let fPass = req.body.pass;
 	console.log('User: '+fUser+', pass: '+fPass);
@@ -71,7 +88,7 @@ app.post('/iniciaSesion',(req,res)=>{
 					res.send('No existe');
 				}
 			}
-			db.close;
+			db.close();
 		});
 	});
 });

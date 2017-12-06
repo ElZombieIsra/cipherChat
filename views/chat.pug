@@ -5,19 +5,20 @@ html
     link(rel='stylesheet',href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css')
     link(rel='stylesheet', href='../css/style.css')
   body
-    p.h2= 'Usuario: '+user
-    #msgs.container
-    .footer
-      form
-        .row
-          .col-3
-            label.h5(for='msg') Escribe tu mensaje:
-          .col
-            input.form-control#msg(type='text', name='msg', placeholder='Mensaje')
-            |
-            input#user(type='hidden', name='user', value=''+user)
-          .col-2
-            input.btn(type='submit', name='send')
+    .container-fluid
+      p.h2= 'Usuario: '+user
+      #msgs.container
+      .footer
+        form
+          .row
+            .col-2
+              label.h5(for='msg') Escribe tu mensaje:
+            .col
+              input.form-control#msg(type='text', name='msg', placeholder='Mensaje')
+              |
+              input#user(type='hidden', name='user', value=''+user)
+            .col-2
+              input.btn(type='submit', name='send')
     script(src='/socket.io/socket.io.js')
     script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
     script(src='js/logic.js')
