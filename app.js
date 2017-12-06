@@ -24,7 +24,7 @@ mongo.connect(mongoURL,(err, db)=>{
 		console.log('Usuario creado con éxito');
 	});
 });
-/**/
+/*
 mongo.connect(mongoURL,(err,db)=>{
 	if (err) throw err;
 	db.collection('msg').drop((err, delOk)=>{
@@ -48,7 +48,7 @@ io.on('connection',(socket)=>{
 			console.log('Resultado de leer mensajes:');
 			console.log(result);
 			if (result!=={}&&result!==undefined&&result!==null) {
-				let decoded = key.decrypt(new Buffer(result.toString('base64')));
+				let decoded = key.decrypt(new Buffer(result.toString('base64')))	;
 				socket.emit('oldMsg',decoded);
 			}
 			db.close();
