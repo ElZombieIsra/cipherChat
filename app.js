@@ -5,11 +5,16 @@ var express = require('express'),
 	http = require('http').Server(app),
 	io = require('socket.io')(http),
 	mongo = require('mongodb'),
-	jwt = require('jwt-simple');
+	jwt = require('jwt-simple'),
+	key = new NodeRSA({b:128});
 var users = [],messages=[];
 var mongoURL = "mongodb://ElZombieIsra:awadeewe@awadeewe-shard-00-00-xdx9j.mongodb.net:27017,awadeewe-shard-00-01-xdx9j.mongodb.net:27017,awadeewe-shard-00-02-xdx9j.mongodb.net:27017/test?ssl=true&replicaSet=awadeewe-shard-0&authSource=admin";
 var token = '';
 var secret = 'awadeewe';
+var publicPEM = key.exportKey('pkcs8-public-pem'),
+	privatePEM = key.exportKey('pkcs8-private-pem');
+	console.log(publicPEM);
+	console.log(privatePEM);
 /*
 mongo.connect(mongoURL,(err, db)=>{
 	if (err) throw err;
