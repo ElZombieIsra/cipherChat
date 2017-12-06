@@ -36,7 +36,9 @@ io.on('connection',(socket)=>{
 		console.log('Conexión exitosa, leer Mensajes');
 		db.collection('msg').find({},{_id:false}).toArray((err,result)=>{
 			if (err) throw err;
-			socket.emit('oldMsg',result);
+			console.log('Resultado de leer mensajes: '+result);
+			let decoded = key.decrypt(result);
+			socket.emit('oldMsg',decoded);
 			db.close();
 		});
 	});
@@ -58,10 +60,11 @@ io.on('connection',(socket)=>{
 		let str = String(msg).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 		msgJson.user = user;
 		msgJson.msg=str;
+		let coded = key.encrypt(msgJson);
 		mongo.connect(mongoURL,(err,db)=>{
 			if (err) throw err;
 			console.log('DB conectada crear msg');
-			db.collection('msg').insertOne(msgJson,(err,result)=>{
+			db.collection('msg').insertOne(coded,(err,result)=>{
 				if (err) throw err;
 				console.log('Mensaje añadido con éxito');
 				db.close();
