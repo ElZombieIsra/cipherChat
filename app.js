@@ -25,6 +25,15 @@ mongo.connect(mongoURL,(err, db)=>{
 	});
 });
 /**/
+mongo.connect(mongoURL,(err,db)=>{
+	if (err) throw err;
+	db.collection('msg').drop((err, delOk)=>{
+		if (err) throw err;
+		if (delOk) console.log('Collection deleted');
+		db.close();
+	});
+});
+/**/
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -36,9 +45,12 @@ io.on('connection',(socket)=>{
 		console.log('Conexión exitosa, leer Mensajes');
 		db.collection('msg').find({},{_id:false}).toArray((err,result)=>{
 			if (err) throw err;
-			console.log('Resultado de leer mensajes: '+result);
-			let decoded = key.decrypt(result);
-			socket.emit('oldMsg',decoded);
+			console.log('Resultado de leer mensajes:');
+			console.log(result);
+			if (result!=={}&&result!==undefined&&result!==null) {
+				let decoded = key.decrypt(result);
+				socket.emit('oldMsg',decoded);
+			}
 			db.close();
 		});
 	});
