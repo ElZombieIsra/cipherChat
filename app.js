@@ -73,6 +73,7 @@ io.on('connection',(socket)=>{
 		msgJson.user = user;
 		msgJson.msg=str;
 		let coded = key.encrypt(msgJson).toString();
+		console.log(coded);
 		mongo.connect(mongoURL,(err,db)=>{
 			if (err) throw err;
 			console.log('DB conectada crear msg');
