@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/ElZombieIsra/cipherChat#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "express": "^4.16.2",
     "jwt-simple": "^0.5.1",
     "mongodb": "^2.2.33",
