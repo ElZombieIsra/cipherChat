@@ -48,7 +48,7 @@ io.on('connection',(socket)=>{
 			console.log('Resultado de leer mensajes:');
 			console.log(result);
 			if (result!=={}&&result!==undefined&&result!==null) {
-				let decoded = key.decrypt(result);
+				let decoded = key.decrypt(new Buffer(result.toString('base64')));
 				socket.emit('oldMsg',decoded);
 			}
 			db.close();
@@ -72,7 +72,7 @@ io.on('connection',(socket)=>{
 		let str = String(msg).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 		msgJson.user = user;
 		msgJson.msg=str;
-		let coded = key.encrypt(msgJson);
+		let coded = key.encrypt(msgJson).toString();
 		mongo.connect(mongoURL,(err,db)=>{
 			if (err) throw err;
 			console.log('DB conectada crear msg');
